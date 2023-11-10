@@ -1,0 +1,1 @@
+export const server = "htpp://localhost:8000/api/v2";
