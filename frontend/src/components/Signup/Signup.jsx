@@ -17,6 +17,7 @@ const Signup = () => {
     const file = e.target.files[0];
     setAvatar(file);
   };
+  
   const handleSubmit =  async (e) => {
     e.preventDefault();
     const config = { headers: { "Content-Type": "multipart/form-data" } };
