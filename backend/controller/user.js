@@ -1,12 +1,12 @@
 const express = require("express");
 const path = require("path");
-const User = express.Router();
+const User = require("../model/user")
 const router = express.Router();
 const {upload} = require("../multer");
 const ErrorHandler = require("../utils/ErrorHandler");
 
-router.post("/create-user", upload.single("file"), async (req, res, next) => {
-    const {name, email, password, avatar} = req.body;
+router.post("/create-user", upload.single("file"), async (req,res,next) => {
+    const {name, email, password} = req.body;
     const userEmail = await User.findOne({email});
 
     if(userEmail){
