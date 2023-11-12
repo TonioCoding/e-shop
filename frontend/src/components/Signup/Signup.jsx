@@ -18,6 +18,7 @@ const Signup = () => {
     setAvatar(file);
   };
   
+  /* Suspected error for duplicate user creation*/
   const handleSubmit =  async (e) => {
     e.preventDefault();
     const config = { headers: { "Content-Type": "multipart/form-data" } };
