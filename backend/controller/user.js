@@ -30,7 +30,10 @@ router.post("/create-user", upload.single("file"), async (req, res, next) => {
     name: name,
     email: email,
     password: password,
-    avatar: fileUrl,
+    avatar:{
+      url : fileUrl,
+      public_id: fileUrl
+    }
   };
 
   const newUser = await User.create(user);
