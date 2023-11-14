@@ -35,6 +35,10 @@ const Signup = () => {
       .post(`${server}/user/create-user`, newForm, config)
       .then((res) => {
         toast.success(res.data.message);
+        setName("");
+        setEmail("");
+        setPassword("");
+        setAvatar();
       })
       .catch((error) => {
         toast.error(`${error.response.data.message}!`);

@@ -92,12 +92,44 @@ router.post(
         return next(new ErrorHandler("User already exists!", 400));
       }
 
-       user = await User.create({
+      user = await User.create({
         name,
         email,
         avatar,
         password,
       });
+
+      sendToken(user, 201, res);
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
+//login user
+router.post(
+  "/login-user",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const { email, password } = req.body;
+
+      if (!email || !password) {
+        return next(new ErrorHandler("Please provide all fields!", 400));
+      }
+
+      const user = await user.findOne({ email }).select("+password");
+
+      if (!user) {
+        return next(new ErrorHandler("User doesn't exists", 400));
+      }
+
+      const isPasswordValid = await user.conparePassword(password);
+
+      if (!isPasswordValid) {
+        return next(
+          new ErrorHandler("Please provide the correct credentials!")
+        );
+      }
 
       sendToken(user, 201, res);
     } catch (error) {
