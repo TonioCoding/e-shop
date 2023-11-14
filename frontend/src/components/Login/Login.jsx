@@ -19,7 +19,7 @@ const Login = () => {
     await axios.post(`${server}/user/login-user`,{
       email,
       password,
-    }, {withCredentials: true}).then((res) => {
+    }).then((res) => {
       toast.success("Login Success!");
       navigate("/");
     }).catch((err) => {
