@@ -15,6 +15,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // how is user undefined?
     await axios
       .post(
         `${server}/user/login-user`,
